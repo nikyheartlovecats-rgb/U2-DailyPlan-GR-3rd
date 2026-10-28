@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colegio Montano - 3rd Grade Grammar Unit 2 Planning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            montanoBlue: '#1269A8',
+            montanoYellow: '#F7D615',
+            montanoGreen: '#54887D',
+            montanoLightBlue: '#88B5C7',
+            montanoOlive: '#A6B046',
+            montanoBg: '#F2F5E9',
+          },
+          fontFamily: {
+            sans: ['Segoe UI', 'Tahoma', 'Verdana', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #F2F5E9;
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    }
+    .board-card {
+      background: #FFFFFF;
+      border: 2px solid #1269A8;
+      box-shadow: 4px 4px 0px #88B5C7;
+    }
+    .tab-active {
+      background-color: #1269A8 !important;
+      color: #FFFFFF !important;
+      border-bottom: 4px solid #F7D615 !important;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #88B5C7;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-gray-800 flex flex-col">
+
+  <!-- TOP HEADER / BRANDING BAR -->
+  <header class="bg-montanoBlue text-white p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center gap-4">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" alt="Colegio Montano Logo" class="h-12 w-auto bg-white p-1 rounded-md shadow">
+      <div>
+        <h1 class="text-xl font-bold tracking-wide text-white">COLEGIO MONTANO</h1>
+        <p class="text-xs text-montanoYellow font-semibold uppercase tracking-wider">Interactive Digital Whiteboard | Grammar 3rd Grade - Unit 2</p>
+      </div>
+    </div>
+    
+    <!-- HEADER CONTROLS -->
+    <div class="flex items-center gap-3">
+      <span class="hidden md:inline-block bg-montanoGreen text-white text-xs px-3 py-1.5 rounded-full font-medium">
+        <i class="fa-solid fa-user-tie mr-1"></i> Teacher: Nicole De León
+      </span>
+      <button onclick="toggleFullscreen()" class="bg-montanoYellow hover:bg-yellow-400 text-montanoBlue font-bold px-3 py-2 rounded-lg text-sm flex items-center gap-2 transition shadow">
+        <i class="fa-solid fa-expand" id="fullscreenIcon"></i>
+        <span class="hidden sm:inline">Fullscreen</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <div class="flex-1 p-3 md:p-6 max-w-7xl w-full mx-auto flex flex-col gap-4">
+
+    <!-- GENERAL UNIT METADATA & HABITS BANNER -->
+    <div class="board-card rounded-xl p-4 flex flex-col md:flex-row justify-between gap-4 items-start md:items-center">
+      <div class="space-y-1">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="bg-montanoBlue text-white text-xs px-2.5 py-0.5 rounded font-bold">Unit 2</span>
+          <span class="bg-montanoOlive text-white text-xs px-2.5 py-0.5 rounded font-bold">Dates: March 15 - May 14</span>
+          <span class="bg-montanoLightBlue text-gray-800 text-xs px-2.5 py-0.5 rounded font-bold">2 Classes / Week (16 Total)</span>
+        </div>
+        <h2 class="text-lg font-bold text-montanoBlue">Course: Grammar 3rd Grade | Our World 3 (Units 4 & 5)</h2>
+        <p class="text-xs text-gray-600"><strong>CNB Alignment:</strong> Expresses ideas, emotions, and practical experiences using simple sentence structures and relevant vocabulary in spoken and written contexts.</p>
+      </div>
+      <!-- LEADER IN ME HABITS BADGES -->
+      <div class="flex flex-wrap gap-1.5 max-w-md">
+        <span class="text-[10px] bg-blue-100 text-montanoBlue font-semibold px-2 py-1 rounded-full"><i class="fa-solid fa-compass mr-1"></i>H1: Be Proactive</span>
+        <span class="text-[10px] bg-yellow-100 text-yellow-800 font-semibold px-2 py-1 rounded-full"><i class="fa-solid fa-bullseye mr-1"></i>H2: Begin with the End in Mind</span>
+        <span class="text-[10px] bg-green-100 text-montanoGreen font-semibold px-2 py-1 rounded-full"><i class="fa-solid fa-list-check mr-1"></i>H3: Put First Things First</span>
+        <span class="text-[10px] bg-teal-100 text-teal-800 font-semibold px-2 py-1 rounded-full"><i class="fa-solid fa-people-arrows mr-1"></i>H5: Seek First to Understand</span>
+        <span class="text-[10px] bg-purple-100 text-purple-800 font-semibold px-2 py-1 rounded-full"><i class="fa-solid fa-arrows-spin mr-1"></i>H6: Synergize</span>
+      </div>
+    </div>
+
+    <!-- LESSON SELECTOR / TIMELINE NAVIGATOR -->
+    <div class="bg-white rounded-xl p-3 shadow border border-gray-200">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-bold uppercase text-montanoBlue tracking-wider"><i class="fa-regular fa-calendar-days mr-1"></i> Select Lesson Plan:</span>
+        <span id="selectedWeekLabel" class="text-xs font-semibold text-montanoGreen">Weeks 1 & 2: Sense Verbs</span>
+      </div>
+      <div class="flex gap-2 overflow-x-auto pb-2 custom-scrollbar" id="lessonPillsContainer">
+        <!-- JS populated lesson pills -->
+      </div>
+    </div>
+
+    <!-- MAIN LESSON CONTENT AREA -->
+    <div class="board-card rounded-xl p-4 md:p-6 flex-1 flex flex-col justify-between">
+      
+      <!-- LESSON HEADER INFO -->
+      <div class="border-b pb-3 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+        <div>
+          <span id="lessonNumberBadge" class="text-xs font-bold bg-montanoYellow text-montanoBlue px-2.5 py-1 rounded uppercase">Lesson 1</span>
+          <h3 id="lessonTopicTitle" class="text-xl font-bold text-montanoBlue mt-1">Sense Verbs (Page 68, 69)</h3>
+        </div>
+        <div class="text-right text-xs text-gray-600">
+          <p><strong>SB Pages:</strong> <span id="sbPagesText">68, 69</span> | <strong>WB Pages:</strong> <span id="wbPagesText">45, 46</span></p>
+          <p><strong>Resources:</strong> <span id="resourcesText">Student Book, Workbook, Audio TR 4.1-4.3, Sensory Objects</span></p>
+        </div>
+      </div>
+
+      <!-- MONTANO 4 MOMENTS TABS NAVIGATION -->
+      <div class="flex flex-wrap gap-2 border-b-2 border-gray-200 mb-4">
+        <button onclick="switchMomentTab('m1')" id="tab-m1" class="tab-btn tab-active px-4 py-2 text-sm font-bold rounded-t-lg transition flex items-center gap-2">
+          <i class="fa-solid fa-bolt text-montanoYellow"></i> I) Warm Up & Vocab (~5 min)
+        </button>
+        <button onclick="switchMomentTab('m2')" id="tab-m2" class="tab-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-2 text-sm font-bold rounded-t-lg transition flex items-center gap-2">
+          <i class="fa-solid fa-user text-montanoBlue"></i> II) Individual Work (20 min)
+        </button>
+        <button onclick="switchMomentTab('m3')" id="tab-m3" class="tab-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-2 text-sm font-bold rounded-t-lg transition flex items-center gap-2">
+          <i class="fa-solid fa-users text-montanoGreen"></i> III) Cooperative Work (30 min)
+        </button>
+        <button onclick="switchMomentTab('m4')" id="tab-m4" class="tab-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-4 py-2 text-sm font-bold rounded-t-lg transition flex items-center gap-2">
+          <i class="fa-solid fa-chart-pie text-montanoOlive"></i> IV) Plenary & Closure (15 min)
+        </button>
+      </div>
+
+      <!-- TAB 1: MOMENT I -->
+      <div id="content-m1" class="moment-content space-y-4">
+        <div class="bg-blue-50 border-l-4 border-montanoBlue p-4 rounded-r-lg">
+          <h4 class="font-bold text-montanoBlue flex items-center gap-2">
+            <i class="fa-solid fa-music text-montanoYellow"></i> 1. Warm-Up & Brain Gym
+          </h4>
+          <p id="m1-warmup" class="text-sm mt-1 text-gray-700"></p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+            <h5 class="font-bold text-yellow-900 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-spell-check text-montanoBlue"></i> Vocabulary Practice 1 & 2
+            </h5>
+            <p id="m1-vocab" class="text-sm text-gray-700 mt-2"></p>
+          </div>
+          <div class="bg-green-50 border border-green-200 p-4 rounded-lg">
+            <h5 class="font-bold text-green-900 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-headphones text-montanoGreen"></i> Unit Song Practice
+            </h5>
+            <p id="m1-song" class="text-sm text-gray-700 mt-2"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: MOMENT II -->
+      <div id="content-m2" class="moment-content hidden space-y-4">
+        <div class="bg-blue-50 border-l-4 border-montanoBlue p-4 rounded-r-lg">
+          <h4 class="font-bold text-montanoBlue flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square"></i> Guided Practice & Workbook Production
+          </h4>
+          <p id="m2-instructions" class="text-sm text-gray-700 mt-2"></p>
+        </div>
+
+        <!-- ACCORDION FOR HIDDEN SOLUTION / ANSWER KEY -->
+        <div class="border border-montanoLightBlue rounded-lg overflow-hidden mt-4">
+          <button onclick="toggleAnswerKey()" class="w-full bg-montanoLightBlue/20 hover:bg-montanoLightBlue/30 text-montanoBlue p-3 font-bold text-sm text-left flex justify-between items-center transition">
+            <span><i class="fa-solid fa-key mr-2 text-montanoYellow"></i> Click to Reveal / Hide Teacher Answer Key & Guidance</span>
+            <i id="accordionIcon" class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div id="answerKeyBody" class="hidden p-4 bg-gray-50 border-t border-montanoLightBlue text-sm text-gray-800 space-y-2">
+            <p class="font-semibold text-montanoGreen">Expected Outputs / Answers:</p>
+            <div id="m2-answers" class="bg-white p-3 rounded border text-xs font-mono"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MOMENT III -->
+      <div id="content-m3" class="moment-content hidden space-y-4">
+        <div class="bg-green-50 border-l-4 border-montanoGreen p-4 rounded-r-lg">
+          <h4 class="font-bold text-montanoGreen flex items-center gap-2">
+            <i class="fa-solid fa-users"></i> Team & Pair Collaborative Task
+          </h4>
+          <p id="m3-cooperative" class="text-sm text-gray-700 mt-2"></p>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+          <h5 class="font-bold text-xs uppercase text-montanoBlue tracking-wider mb-2"><i class="fa-solid fa-sitemap mr-1"></i> Synergy & Roles Assignment:</h5>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            <div class="bg-gray-50 p-2 rounded border border-gray-200"><strong class="text-montanoBlue">Leader:</strong> Keeps team on task (Habit 1).</div>
+            <div class="bg-gray-50 p-2 rounded border border-gray-200"><strong class="text-montanoGreen">Speaker:</strong> Presents in Plenary (Habit 5).</div>
+            <div class="bg-gray-50 p-2 rounded border border-gray-200"><strong class="text-montanoOlive">Writer:</strong> Records answers neatly.</div>
+            <div class="bg-gray-50 p-2 rounded border border-gray-200"><strong class="text-yellow-700">Timekeeper:</strong> Manages 30-min window.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MOMENT IV -->
+      <div id="content-m4" class="moment-content hidden space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- PLENARY & GAME -->
+          <div class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-r-lg space-y-3">
+            <h4 class="font-bold text-purple-900 flex items-center gap-2">
+              <i class="fa-solid fa-gamepad text-purple-600"></i> Plenary & Interactive Closure Game
+            </h4>
+            <p id="m4-plenary" class="text-sm text-gray-700"></p>
+            <div class="bg-white p-3 rounded border border-purple-200">
+              <strong class="text-xs text-purple-800 uppercase block mb-1"><i class="fa-solid fa-rotate-right mr-1"></i> Quick Topic Review Exercise:</strong>
+              <p id="m4-review" class="text-sm text-gray-800 italic"></p>
+            </div>
+          </div>
+
+          <!-- INTERACTIVE EVALUATION RUBRIC / CHECKLIST -->
+          <div class="bg-white border border-gray-300 p-4 rounded-lg shadow-sm space-y-3">
+            <h4 class="font-bold text-montanoBlue text-sm flex items-center justify-between">
+              <span><i class="fa-solid fa-clipboard-check text-montanoGreen mr-1"></i> Plenary Team Evaluation Checklist</span>
+              <span class="text-xs font-normal text-gray-500">(Interactive)</span>
+            </h4>
+            
+            <div class="space-y-2 text-xs">
+              <label class="flex items-start gap-2 p-1.5 hover:bg-gray-50 rounded cursor-pointer">
+                <input type="checkbox" class="mt-0.5 rounded text-montanoBlue focus:ring-montanoBlue">
+                <span><strong>1. Content Mastery:</strong> Team uses target grammar accurately during presentation.</span>
+              </label>
+              <label class="flex items-start gap-2 p-1.5 hover:bg-gray-50 rounded cursor-pointer">
+                <input type="checkbox" class="mt-0.5 rounded text-montanoBlue focus:ring-montanoBlue">
+                <span><strong>2. Logic & Structure:</strong> Clear steps and correct workbook/exercise explanations.</span>
+              </label>
+              <label class="flex items-start gap-2 p-1.5 hover:bg-gray-50 rounded cursor-pointer">
+                <input type="checkbox" class="mt-0.5 rounded text-montanoBlue focus:ring-montanoBlue">
+                <span><strong>3. Collaboration:</strong> Equal participation showing Leader in Me synergy (Habit 6).</span>
+              </label>
+              <label class="flex items-start gap-2 p-1.5 hover:bg-gray-50 rounded cursor-pointer">
+                <input type="checkbox" class="mt-0.5 rounded text-montanoBlue focus:ring-montanoBlue">
+                <span><strong>4. Q&A Readiness:</strong> Ability to answer teacher and classmate follow-up questions.</span>
+              </label>
+            </div>
+            
+            <div class="pt-2 border-t text-right">
+              <button onclick="resetRubric()" class="text-[11px] text-gray-500 hover:text-montanoBlue underline">Reset Checklist</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER PREVIOUS / NEXT LESSON BAR -->
+      <div class="mt-6 pt-4 border-t flex justify-between items-center text-xs">
+        <button onclick="navigateLesson(-1)" id="prevBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold px-4 py-2 rounded flex items-center gap-1 transition">
+          <i class="fa-solid fa-arrow-left"></i> Previous Class
+        </button>
+        <span id="lessonCounterText" class="font-semibold text-gray-600">Lesson 1 of 16</span>
+        <button onclick="navigateLesson(1)" id="nextBtn" class="bg-montanoBlue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded flex items-center gap-1 transition">
+          Next Class <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT DATA & INTERACTION LOGIC -->
+  <script>
+    // LESSON DATASTRUCTURE (16 LESSONS TOTAL - 8 WEEKS)
+    const lessonsData = [
+      // WEEKS 1 & 2: SENSE VERBS
+      {
+        week: "Weeks 1 & 2 (March 15 - March 26)",
+        topic: "Sense Verbs (look, feel, smell, sound, taste)",
+        subTopic: "Introduction & Sentence Structures",
+        sb: "68, 69",
+        wb: "45, 46",
+        resources: "Student Book, Workbook, Audio TR 4.1-4.3, Mystery Box with textures",
+        warmup: "Brain Gym: Sensory Snap! Teacher shows objects (apple, bell, velvet). Students quickly call out the sense used. Sing 'Our Senses' song (TR 4.3).",
+        vocab: "Practice Vocabulary 1: smooth, rough, beautiful, ugly, hard, soft, dry, quiet, loud, delicious, terrible, sticky.",
+        song: "Listen, read, and sing 'Our Senses' (SB p. 66). Repeat chorus with hand gestures for 5 senses.",
+        m2Instructions: "Complete Student Book p. 68-69. Write sentences describing objects using sense verbs + adjectives (e.g., 'The cake tastes sweet.', 'The drum sounds loud.'). Workbook p. 45.",
+        m2Answers: "SB p. 68 Ex 1: 1. tastes 2. looks 3. sounds. WB p. 45: 1. It feels soft. 2. It smells good. 3. It tastes sweet.",
+        m3Cooperative: "Sensory Mystery Box in Pairs (Habit 6: Synergize). Student A touches an object inside the box and describes it using sense verbs ('It feels rough'). Student B guesses the object.",
+        m4Plenary: "Group presentation: Teams showcase 2 mystery objects with full descriptions. Interactive Game: 'Sense Verb Trivia' on whiteboard.",
+        m4Review: "Review Exercise: Complete: 'A flower ________ (smell) good.' / 'Ice cream ________ (taste) delicious.'"
+      },
+      {
+        week: "Weeks 1 & 2 (March 15 - March 26)",
+        topic: "Sense Verbs (look, feel, smell, sound, taste)",
+        subTopic: "Tastes & Textures Deep Dive",
+        sb: "68, 69",
+        wb: "45, 46",
+        resources: "Student Book, Workbook, Audio TR 4.5, Flashcards",
+        warmup: "Vocabulary 2 Drill: Sweet, salty, sour, bitter, spicy. Sing 'Our Senses' song to energize the class.",
+        vocab: "Practice Vocabulary 2: sweet, salty, sour, bitter, spicy. Pair drill: 'Honey is sweet, lemons are sour.'",
+        song: "Sing 'Our Senses' song (TR 4.3) with full movement actions.",
+        m2Instructions: "Complete Workbook p. 46. Match foods with their correct sense adjective. Write 4 original sentences in notebook.",
+        m2Answers: "WB p. 46: 1. Honey - sweet, 2. Lemon - sour, 3. Chips - salty, 4. Coffee - bitter.",
+        m3Cooperative: "Food Menu Creation: In teams of 4 (Habit 2: Begin with the End in Mind), create a 4-item menu describing flavor profile of each dish using target sense verbs.",
+        m4Plenary: "Plenary: Each team presents 1 dish from their menu. Class votes on the most delicious menu.",
+        m4Review: "Review Exercise: 'Lemons taste _______.' 'Potato chips taste _______.'"
+      },
+      {
+        week: "Weeks 1 & 2 (March 15 - March 26)",
+        topic: "Sense Verbs (look, feel, smell, sound, taste)",
+        subTopic: "Describing Animals & Nature",
+        sb: "68, 69",
+        wb: "45, 46",
+        resources: "Animal Flashcards, WB p. 46, Whiteboard markers",
+        warmup: "Quick Vocab 1 & 2 review with flashcard race on board. Sing 'Our Senses' song verse 2.",
+        vocab: "Review all 17 sensory vocabulary words (soft, loud, sticky, spicy, etc.).",
+        song: "Chant 'Our Senses' replacing animals into the lyrics.",
+        m2Instructions: "Work on SB p. 69 activity 3. Write descriptions of animals using sense verbs (e.g., 'A rabbit feels soft.').",
+        m2Answers: "SB p. 69: 1. Soft / small 2. Loud / big 3. Rough / dry.",
+        m3Cooperative: "Animal Charades in groups of 3 (Habit 5: Seek First to Understand). Act out an animal's texture or sound without speaking while peers guess.",
+        m4Plenary: "Teams present their best animal description to the class. Leader in Me self-check on teamwork.",
+        m4Review: "Review Exercise: Correct the sentence: 'The bird sound beautiful.' -> 'The bird _______ beautiful.'"
+      },
+      {
+        week: "Weeks 1 & 2 (March 15 - March 26)",
+        topic: "Sense Verbs (look, feel, smell, sound, taste)",
+        subTopic: "Unit Integration & Mastery Check",
+        sb: "68, 69",
+        wb: "45, 46",
+        resources: "Workbook, Quiz Worksheet, Audio TR 4.3",
+        warmup: "Sing 'Our Senses' full version without lyrics on board. Vocab 1 & 2 speed quiz.",
+        vocab: "Full review of Vocab 1 & Vocab 2 list.",
+        song: "Perform 'Our Senses' with team dance moves.",
+        m2Instructions: "Complete Review Worksheet and Workbook p. 46 self-assessment section.",
+        m2Answers: "Worksheet: 1. tastes 2. looks 3. smells 4. feels 5. sounds.",
+        m3Cooperative: "Peer Editing Pairs (Habit 4: Think Win-Win). Students swap workbooks and verify sense verb agreements.",
+        m4Plenary: "Plenary Discussion: What sense is most important for animal survival? Interactive Pasapalabra Game.",
+        m4Review: "Review Exercise: Circle the correct verb: 'Music (tastes / sounds) loud.'"
+      },
+
+      // WEEKS 3 & 4: WAS / WERE
+      {
+        week: "Weeks 3 & 4 (April 5 - April 16)",
+        topic: "Was / Were (Past Simple of To Be)",
+        subTopic: "Affirmative & Negative Past Statements",
+        sb: "71",
+        wb: "48, 49",
+        resources: "Student Book p. 71, Workbook, Historical photos",
+        warmup: "Warm-up: 'Yesterday vs Today' gesture game. Teacher says 'Today I am happy', students convert to 'Yesterday I was...'. Practice Unit 4 Vocab 1 & 2.",
+        vocab: "Review Vocab 1 (smooth, rough, quiet, loud) and connect with past tense context.",
+        song: "Sing 'Our Senses' song as vocal warm-up.",
+        m2Instructions: "Read grammar chart on SB p. 71. Complete exercise 1: Choose was or were. Complete WB p. 48.",
+        m2Answers: "SB p. 71: 1. was 2. were 3. was 4. were. WB p. 48: 1. was 2. wasn't 3. were 4. weren't.",
+        m3Cooperative: "Time Travel Reporter (Habit 6: Synergize). Pairs interview each other about where they were last weekend ('I was at the park. We were happy.').",
+        m4Plenary: "Pairs share 2 facts about their partner's weekend in past tense. Interactive game: 'Was or Were Wall Jump'.",
+        m4Review: "Review Exercise: Fill in: 'They _____ at the zoo yesterday. She _____ tired.'"
+      },
+      {
+        week: "Weeks 3 & 4 (April 5 - April 16)",
+        topic: "Was / Were (Past Simple of To Be)",
+        subTopic: "Questions & Short Answers (Was he...? / Were they...?)",
+        sb: "71",
+        wb: "48, 49",
+        resources: "Student Book p. 71, Question cards",
+        warmup: "Vocab 1 & 2 flashcard drill. Sing 'Our Senses' song in fast-forward mode.",
+        vocab: "Practice Vocabulary 2 (sweet, salty, sour, bitter, spicy) with past contexts ('The soup was spicy').",
+        song: "Sing 'Our Senses' with actions.",
+        m2Instructions: "Complete SB p. 71 Activity 2 and WB p. 49. Formulate Was/Were questions and short answers.",
+        m2Answers: "WB p. 49: 1. Was it quiet? Yes, it was. 2. Were they noisy? No, they weren't.",
+        m3Cooperative: "Detective Game in groups of 4 (Habit 1: Be Proactive). Find who was at the 'scene' using clues with was/were.",
+        m4Plenary: "Plenary: Teams explain their detective solution. Teacher evaluates using rubric.",
+        m4Review: "Review Exercise: '___ you at school yesterday?' -> 'Yes, I ___.'"
+      },
+      {
+        week: "Weeks 3 & 4 (April 5 - April 16)",
+        topic: "Was / Were (Past Simple of To Be)",
+        subTopic: "Describing Past States & Weather",
+        sb: "71",
+        wb: "48, 49",
+        resources: "Weather cards, Workbook p. 49",
+        warmup: "Weather past/present energizer. Vocab 1 & 2 review game.",
+        vocab: "Review sensory adjectives with past weather ('Yesterday was cold and loud').",
+        song: "Sing 'Our Senses' song.",
+        m2Instructions: "Workbook p. 49 Section B. Write 5 past weather sentences using was/were.",
+        m2Answers: "WB p. 49: 1. It was sunny. 2. The trees were green. 3. We were outside.",
+        m3Cooperative: "Weather Memory Pairs (Habit 5). Compare past weather in Guatemala City vs London using picture cards.",
+        m4Plenary: "Group presentations. Trivia Game: Past tense corrections on whiteboard.",
+        m4Review: "Review Exercise: Correct: 'We was at the beach.' -> 'We _______ at the beach.'"
+      },
+      {
+        week: "Weeks 3 & 4 (April 5 - April 16)",
+        topic: "Was / Were (Past Simple of To Be)",
+        subTopic: "Was/Were Mastery & Consolidation",
+        sb: "71",
+        wb: "48, 49",
+        resources: "Review printable, Board markers",
+        warmup: "Vocab 1 & 2 rapid fire drill + Sing 'Our Senses' song.",
+        vocab: "Consolidate all Unit 4 vocabulary.",
+        song: "Sing 'Our Senses' whole class performance.",
+        m2Instructions: "Complete review exercises on page 71 and past simple diagnostic worksheet.",
+        m2Answers: "1. was 2. were 3. wasn't 4. Were 5. was.",
+        m3Cooperative: "Team Quiz Bee (Habit 3: Put First Things First). Teams construct correct was/were sentences against clock.",
+        m4Plenary: "Scoreboard review and group feedback using Plenary Checklist.",
+        m4Review: "Review Exercise: 'My teacher _____ happy this morning.'"
+      },
+
+      // WEEKS 5 & 6: WHY...? BECAUSE...
+      {
+        week: "Weeks 5 & 6 (April 19 - April 30)",
+        topic: "Why...? Because... (Unit 5)",
+        subTopic: "Asking for and Giving Reasons (Animals & Habitats)",
+        sb: "84, 85",
+        wb: "47, 58",
+        resources: "Student Book p. 84-85, TR 5.1-5.3, Habitat cards",
+        warmup: "Brain Gym: Habitats TPR. Teacher names animal, students move like it. Vocab 1 Unit 5 drill (wetlands, grasslands, forest, rain forest, desert, ice, snow, mud). Sing 'Why? Because!' song (TR 5.3).",
+        vocab: "Practice Vocabulary 1 (Unit 5): wetlands, grasslands, forest, rain forest, desert, ice, snow, mud, web, hive, nest, underground, island, cave.",
+        song: "Listen, read, and sing 'Why? Because!' (SB p. 82-83). Act out frogs and giraffes.",
+        m2Instructions: "Complete SB p. 84-85. Match 'Why' questions with 'Because' answers about animal adaptations.",
+        m2Answers: "SB p. 84: 1-c (Why does a giraffe have a long neck? Because it eats leaves at the top of trees).",
+        m3Cooperative: "Habitat & Adaptation Matching (Habit 6: Synergize). Pairs receive animal & habitat cards and write 3 Why/Because Q&A sentences.",
+        m4Plenary: "Plenary: Pairs read their Q&A dialogues. Class plays 'Why/Because Chain Game'.",
+        m4Review: "Review Exercise: 'Why do polar bears have white fur?' -> 'Because they live in _______ and _______.'"
+      },
+      {
+        week: "Weeks 5 & 6 (April 19 - April 30)",
+        topic: "Why...? Because... (Unit 5)",
+        subTopic: "Animal Features & Survival Reasons",
+        sb: "84, 85",
+        wb: "47, 58",
+        resources: "Student Book, Workbook p. 47, Audio TR 5.5",
+        warmup: "Vocab 2 Unit 5 drill: tongue, fur, horns, pouch, wings. Sing 'Why? Because!' song with animal movements.",
+        vocab: "Practice Vocabulary 2 (Unit 5): tongue, fur, horns, pouch, wings.",
+        song: "Sing 'Why? Because!' song (TR 5.3) in 2 groups (Group A: Why?, Group B: Because!).",
+        m2Instructions: "Complete WB p. 47. Write complete sentences using 'Why' and 'Because' for animal body parts.",
+        m2Answers: "WB p. 47: 1. Why does a kangaroo have a pouch? Because it carries its baby. 2. Why do birds have wings? Because they fly.",
+        m3Cooperative: "Create-an-Alien Animal in teams of 4 (Habit 2: Begin with the End in Mind). Draw an animal with unusual parts and write 3 'Why? Because...' facts.",
+        m4Plenary: "Exposition of Alien Animals. Teacher evaluates presentation skills using the interactive rubric.",
+        m4Review: "Review Exercise: 'Why do birds have wings?' -> '_______ they need to fly.'"
+      },
+      {
+        week: "Weeks 5 & 6 (April 19 - April 30)",
+        topic: "Why...? Because... (Unit 5)",
+        subTopic: "Habitats & Reasons Dialogue Practice",
+        sb: "84, 85",
+        wb: "47, 58",
+        resources: "Workbook p. 58, Habitat Posters",
+        warmup: "Unit 5 Vocab 1 & 2 flashcard drill. Sing 'Why? Because!' song whole class.",
+        vocab: "Review habitats (desert, cave, island, rain forest) and animal body features.",
+        song: "Chant 'Why? Because!' with claps.",
+        m2Instructions: "Complete WB p. 58 exercises. Fill in missing question words (Why/Because).",
+        m2Answers: "WB p. 58: 1. Why 2. Because 3. Why 4. Because.",
+        m3Cooperative: "Roleplay Dialogue (Habit 5: Seek First to Understand). Student A is a zoo keeper, Student B is a curious visitor asking 'Why...?'.",
+        m4Plenary: "Selected pairs present roleplay to class. Whiteboard speed match game.",
+        m4Review: "Review Exercise: Complete question: '_______ does a camel live in the desert?'"
+      },
+      {
+        week: "Weeks 5 & 6 (April 19 - April 30)",
+        topic: "Why...? Because... (Unit 5)",
+        subTopic: "Unit 5 Grammar Integration",
+        sb: "84, 85",
+        wb: "47, 58",
+        resources: "Review worksheets, Board markers",
+        warmup: "Full Vocab 1 & 2 review race. Sing 'Why? Because!' song chorus.",
+        vocab: "Consolidate Unit 5 vocabulary (19 terms total).",
+        song: "Sing 'Why? Because!' song with solo singers for 'Why?'.",
+        m2Instructions: "Complete review worksheet on Why/Because structures.",
+        m2Answers: "1. Why 2. Because 3. Why 4. Because.",
+        m3Cooperative: "Team Jeopardy Challenge (Habit 6: Synergize). Categories: Animal Body Parts, Habitats, Why Questions.",
+        m4Plenary: "Jeopardy final round & Leader in Me recognition.",
+        m4Review: "Review Exercise: Unscramble: (lives / Because / in / it / ice) -> '_________________'"
+      },
+
+      // WEEKS 7 & 8: INFINITIVE OF PURPOSE
+      {
+        week: "Weeks 7 & 8 (May 3 - May 14)",
+        topic: "Infinitive of Purpose (to + verb)",
+        subTopic: "Expressing Purpose in Daily Actions",
+        sb: "87",
+        wb: "60, 61",
+        resources: "Student Book p. 87, Workbook p. 60-61, Action cards",
+        warmup: "Brain Gym: Action Mimic. Mime an action (e.g., sleeping), students say why: 'To rest!'. Review Unit 4 & 5 Vocab 1 & 2. Sing 'Why? Because!' song.",
+        vocab: "Review action verbs and animal features from Unit 5 Vocab 1 & 2.",
+        song: "Sing 'Why? Because!' song to connect reason with purpose.",
+        m2Instructions: "Study grammar box on SB p. 87 ('Birds use twigs to build nests'). Complete exercise 1: Join sentences with 'to + verb'. WB p. 60.",
+        m2Answers: "SB p. 87: 1. Monkeys use tails to climb trees. 2. Bees make honey to eat. WB p. 60: 1. to stay warm 2. to catch food.",
+        m3Cooperative: "Purpose Matchmaker in pairs (Habit 3: Put First Things First). Match action cards with purpose cards using 'to + verb'.",
+        m4Plenary: "Pair presentations. Interactive Game: 'Infinitive Wheel of Fortune'.",
+        m4Review: "Review Exercise: 'Cheetahs run fast _______ (catch) food.'"
+      },
+      {
+        week: "Weeks 7 & 8 (May 3 - May 14)",
+        topic: "Infinitive of Purpose (to + verb)",
+        subTopic: "Animal Survival & Human Actions",
+        sb: "87",
+        wb: "60, 61",
+        resources: "Workbook p. 61, Picture prompts",
+        warmup: "Vocab 1 & 2 mix drill (Unit 4 & 5). Sing 'Our Senses' & 'Why? Because!' mashup song.",
+        vocab: "Review sensory and habitat vocabulary.",
+        song: "Sing 'Our Senses' song.",
+        m2Instructions: "Complete WB p. 61. Write 5 original sentences explaining why animals use specific body parts with infinitive of purpose.",
+        m2Answers: "WB p. 61: 1. Lions use claws to hunt. 2. Elephants use trunks to drink water.",
+        m3Cooperative: "Survival Invention Team Project (Habit 2 & 6). Teams design a tool and explain its purpose: 'We use this tool to...'.",
+        m4Plenary: "Invention Pitch to the class. Evaluation via Plenary Rubric.",
+        m4Review: "Review Exercise: Complete: 'I go to school _______ learn English.'"
+      },
+      {
+        week: "Weeks 7 & 8 (May 3 - May 14)",
+        topic: "Infinitive of Purpose (to + verb)",
+        subTopic: "Grammar Review: Why/Because vs. Infinitive of Purpose",
+        sb: "87",
+        wb: "60, 61",
+        resources: "Comparison chart on board, SB p. 87",
+        warmup: "Rapid Vocab 1 & 2 pop quiz. Sing 'Why? Because!' song.",
+        vocab: "Review all key vocabulary across Unit 2 planning.",
+        song: "Sing 'Why? Because!' song with energetic dance.",
+        m2Instructions: "Complete contrast worksheet: Choose between 'Because + clause' or 'To + verb'.",
+        m2Answers: "1. to learn 2. because it was cold 3. to buy bread 4. because they were hungry.",
+        m3Cooperative: "Sentence Transformer Pairs (Habit 5). Convert 'Because' sentences into 'Infinitive of purpose' sentences where possible.",
+        m4Plenary: "Plenary display on whiteboard. Class feedback.",
+        m4Review: "Review Exercise: Choose: 'I wear a coat (because / to) stay warm.'"
+      },
+      {
+        week: "Weeks 7 & 8 (May 3 - May 14)",
+        topic: "Infinitive of Purpose & Unit 2 Review",
+        subTopic: "Final Bimonthly Grammar Synthesis",
+        sb: "87",
+        wb: "60, 61",
+        resources: "Unit 2 Comprehensive Review Test, Board",
+        warmup: "Grand Vocab Celebration: Sing both 'Our Senses' and 'Why? Because!' songs. Vocab 1 & 2 Champion Game.",
+        vocab: "Mastery check of all vocabulary terms.",
+        song: "Perform both Unit 4 & Unit 5 songs.",
+        m2Instructions: "Complete Unit 2 Final Grammar Review Assessment.",
+        m2Answers: "Full answer key verified on teacher portal.",
+        m3Cooperative: "Leader in Me Unit Review Teams (Habit 7: Sharpen the Saw). Teams rotate stations reviewing 1) Sense Verbs, 2) Was/Were, 3) Why/Because, 4) Infinitive.",
+        m4Plenary: "Final Plenary reflection & celebration of learning milestones for Unit 2.",
+        m4Review: "Review Exercise: Complete master sentence combining topics!"
+      }
+    ];
+
+    let currentLessonIdx = 0;
+
+    // INITIALIZE PAGE
+    window.onload = function() {
+      renderLessonPills();
+      loadLesson(0);
+    };
+
+    // RENDER LESSON NAVIGATION PILLS
+    function renderLessonPills() {
+      const container = document.getElementById('lessonPillsContainer');
+      container.innerHTML = '';
+
+      lessonsData.forEach((lesson, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `flex-shrink-0 text-xs font-bold px-3 py-1.5 rounded-lg border transition ${idx === currentLessonIdx ? 'bg-montanoBlue text-white border-montanoBlue' : 'bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100'}`;
+        btn.innerText = `L${idx + 1}: ${lesson.topic.split(' ')[0]}`;
+        btn.onclick = () => loadLesson(idx);
+        container.appendChild(btn);
+      });
+    }
+
+    // LOAD LESSON DATA INTO DOM
+    function loadLesson(idx) {
+      currentLessonIdx = idx;
+      const data = lessonsData[idx];
+
+      // Update Header & Meta
+      document.getElementById('selectedWeekLabel').innerText = data.week;
+      document.getElementById('lessonNumberBadge').innerText = `Lesson ${idx + 1} of 16`;
+      document.getElementById('lessonTopicTitle').innerText = `${data.topic} - ${data.subTopic}`;
+      document.getElementById('sbPagesText').innerText = data.sb;
+      document.getElementById('wbPagesText').innerText = data.wb;
+      document.getElementById('resourcesText').innerText = data.resources;
+
+      // Moment 1
+      document.getElementById('m1-warmup').innerText = data.warmup;
+      document.getElementById('m1-vocab').innerText = data.vocab;
+      document.getElementById('m1-song').innerText = data.song;
+
+      // Moment 2
+      document.getElementById('m2-instructions').innerText = data.m2Instructions;
+      document.getElementById('m2-answers').innerText = data.m2Answers;
+
+      // Moment 3
+      document.getElementById('m3-cooperative').innerText = data.m3Cooperative;
+
+      // Moment 4
+      document.getElementById('m4-plenary').innerText = data.m4Plenary;
+      document.getElementById('m4-review').innerText = data.m4Review;
+
+      // Reset Accordion Answer Key
+      document.getElementById('answerKeyBody').classList.add('hidden');
+      document.getElementById('accordionIcon').className = "fa-solid fa-chevron-down";
+
+      // Reset Moment Tab to M1
+      switchMomentTab('m1');
+
+      // Update Pills styling
+      renderLessonPills();
+
+      // Update Prev/Next buttons
+      document.getElementById('prevBtn').disabled = idx === 0;
+      document.getElementById('prevBtn').style.opacity = idx === 0 ? "0.5" : "1";
+      document.getElementById('nextBtn').disabled = idx === lessonsData.length - 1;
+      document.getElementById('nextBtn').style.opacity = idx === lessonsData.length - 1 ? "0.5" : "1";
+      document.getElementById('lessonCounterText').innerText = `Lesson ${idx + 1} of 16`;
+    }
+
+    // TAB SWITCHING LOGIC
+    function switchMomentTab(momentId) {
+      // Hide all contents
+      document.querySelectorAll('.moment-content').forEach(el => el.classList.add('hidden'));
+      // Deactivate all buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('tab-active');
+        btn.classList.add('bg-gray-100', 'text-gray-700');
+      });
+
+      // Show selected
+      document.getElementById(`content-${momentId}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-${momentId}`);
+      activeBtn.classList.add('tab-active');
+      activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
+    }
+
+    // ACCORDION TOGGLE
+    function toggleAnswerKey() {
+      const body = document.getElementById('answerKeyBody');
+      const icon = document.getElementById('accordionIcon');
+      if (body.classList.contains('hidden')) {
+        body.classList.remove('hidden');
+        icon.className = "fa-solid fa-chevron-up";
+      } else {
+        body.classList.add('hidden');
+        icon.className = "fa-solid fa-chevron-down";
+      }
+    }
+
+    // NAVIGATION
+    function navigateLesson(step) {
+      const newIdx = currentLessonIdx + step;
+      if (newIdx >= 0 && newIdx < lessonsData.length) {
+        loadLesson(newIdx);
+      }
+    }
+
+    // FULLSCREEN TOGGLE
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          alert(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+        document.getElementById('fullscreenIcon').className = "fa-solid fa-compress";
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+          document.getElementById('fullscreenIcon').className = "fa-solid fa-expand";
+        }
+      }
+    }
+
+    // RESET CHECKLIST
+    function resetRubric() {
+      const checkboxes = document.querySelectorAll('#content-m4 input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+    }
+  </script>
+</body>
+</html>
